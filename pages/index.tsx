@@ -23,7 +23,7 @@ const Home: NextPage = () => {
         {/* 메뉴 */}
         <div className="grid grid-cols-2 gap-2 h-full overflow-hidden md:grid-cols-4 lg:grid-cols-6 lg:gap-4">
           {[...Array(40)].map((_, index) => (
-            <div key={index} className="bg-slate-500 w-24 h-24"></div>
+            <div key={index} className="bg-slate-500 w-28 h-28"></div>
           ))}
         </div>
       </section>

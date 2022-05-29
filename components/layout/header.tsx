@@ -81,7 +81,10 @@ export default function Header() {
           drawerOpen ? styles.activeMobileDrawer : ""
         }`}
       >
-        <div className="h-14 border-b-[1px] flex items-center px-4 justify-end">
+        <div className="h-14 border-b-[1px] flex items-center px-4 justify-between">
+          <button className="border-[1px] rounded-md p-2 border-orange-500 font-medium text-orange-500">
+            로그인
+          </button>
           <button
             onClick={onCloseDrawer}
             className="hover:text-orange-500 transition-all ease-out"
