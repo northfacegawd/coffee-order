@@ -9,7 +9,8 @@ import styles from "./header.module.scss";
 export default function Header() {
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 
-  const onToggle = () => setDrawerOpen((prev) => !prev);
+  const onOpenDrawer = () => setDrawerOpen(true);
+  const onCloseDrawer = () => setDrawerOpen(false);
 
   return (
     <header
@@ -34,7 +35,10 @@ export default function Header() {
           </a>
         </Link>
         {/* MOBILE VERSION */}
-        <button className="lg:hidden text-orange-500" onClick={onToggle}>
+        <button
+          className="lg:hidden hover:text-orange-500 transition-all ease-out"
+          onClick={onOpenDrawer}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -64,18 +68,42 @@ export default function Header() {
       {/* back drop */}
       <CSSTransition
         in={drawerOpen}
-        timeout={300}
+        timeout={200}
         unmountOnExit
         mountOnEnter
         classNames="backdrop"
       >
-        <div className="backdrop" onClick={onToggle}></div>
+        <div className="backdrop" onClick={onCloseDrawer}></div>
       </CSSTransition>
+      {/* drawer */}
       <div
         className={`${styles.mobileDrawer} ${
           drawerOpen ? styles.activeMobileDrawer : ""
         }`}
-      ></div>
+      >
+        <div className="h-14 border-b-[1px] flex items-center px-4 justify-end">
+          <button
+            onClick={onCloseDrawer}
+            className="hover:text-orange-500 transition-all ease-out"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+        <nav></nav>
+      </div>
     </header>
   );
 }
