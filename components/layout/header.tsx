@@ -15,10 +15,10 @@ export default function Header() {
   return (
     <header
       className={classnames(
-        "flex justify-between w-full h-14 border-b-gray-300 border-b-[1px] fixed top-0 px-4 bg-white bg-opacity-80"
+        "flex justify-between w-full h-14 border-b-gray-300 border-b-[1px] fixed top-0 bg-white bg-opacity-80"
       )}
     >
-      <nav className="flex items-center h-full justify-between space-x-4 w-[1200px] mx-auto">
+      <nav className="flex items-center h-full justify-between space-x-4 w-[1200px] mx-auto px-4">
         <Link href="/">
           <a className="flex items-center">
             <span className="relative w-32 h-14">
