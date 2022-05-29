@@ -6,7 +6,9 @@ const Layout: React.FC<PropsWithChildren<{}>> = ({ children }) => {
   return (
     <>
       <Header />
-      <main>{children}</main>
+      <main className="mt-14 p-4 max-w-[1200px] mx-auto h-full">
+        {children}
+      </main>
       <Footer />
     </>
   );
