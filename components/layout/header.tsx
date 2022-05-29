@@ -1,8 +1,16 @@
 import { classnames } from "@lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import { CSSTransition } from "react-transition-group";
+
+import styles from "./header.module.scss";
 
 export default function Header() {
+  const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+
+  const onToggle = () => setDrawerOpen((prev) => !prev);
+
   return (
     <header
       className={classnames(
@@ -26,7 +34,7 @@ export default function Header() {
           </a>
         </Link>
         {/* MOBILE VERSION */}
-        <button className="lg:hidden text-orange-500">
+        <button className="lg:hidden text-orange-500" onClick={onToggle}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -53,6 +61,21 @@ export default function Header() {
           </li>
         </ul>
       </nav>
+      {/* back drop */}
+      <CSSTransition
+        in={drawerOpen}
+        timeout={300}
+        unmountOnExit
+        mountOnEnter
+        classNames="backdrop"
+      >
+        <div className="backdrop" onClick={onToggle}></div>
+      </CSSTransition>
+      <div
+        className={`${styles.mobileDrawer} ${
+          drawerOpen ? styles.activeMobileDrawer : ""
+        }`}
+      ></div>
     </header>
   );
 }

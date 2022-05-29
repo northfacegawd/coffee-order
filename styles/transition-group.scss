@@ -1,0 +1,33 @@
+/** react css transition group을 사용하기 위해서는 글로벌 css를 적용해야함 */
+@mixin backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: all 300ms ease-out;
+}
+
+.backdrop {
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: all 300ms ease-out;
+}
+
+.backdrop-enter-active {
+  display: block;
+  opacity: 1;
+}
+
+.backdrop-enter-done {
+  display: block;
+  opacity: 1;
+}
