@@ -12,7 +12,7 @@ const Home: NextPage = () => {
             Coffee
           </li>
           <li className="text-[#666] font-medium hover:text-orange-500 hover:font-bold transition-all cursor-pointer">
-            Desert
+            Dessert
           </li>
           <li className="text-[#666] font-medium hover:text-orange-500 hover:font-bold transition-all cursor-pointer">
             Tea
@@ -49,9 +49,12 @@ const Home: NextPage = () => {
         </nav>
         {/* 메뉴 */}
         <div className="bg-slate-100 mx-auto">
-          <ul className="grid grid-cols-4 gap-7">
+          <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7">
             {[...Array(40)].map((_, index) => (
-              <li key={index} className="bg-slate-300 w-48 h-48">
+              <li
+                key={index}
+                className="bg-slate-300 w-40 h-40 md:w-44 md:h-44 lg:w-48 lg:h-48"
+              >
                 <img className="w-full h-auto" />
               </li>
             ))}
