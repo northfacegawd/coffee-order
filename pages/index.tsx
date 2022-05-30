@@ -6,25 +6,56 @@ const Home: NextPage = () => {
   return (
     <section className={homeStyles.grid}>
       {/* 메인 카테고리 부분 */}
-      <nav className="bg-slate-500">
-        <ul>
-          <li>커피</li>
-          <li>디저트</li>
-          <li>차</li>
+      <nav>
+        <ul className="border-l-[3px] border-orange-500 flex flex-col space-y-2 p-2">
+          <li className="text-[#666] font-medium hover:text-orange-500 hover:font-bold transition-all cursor-pointer">
+            Coffee
+          </li>
+          <li className="text-[#666] font-medium hover:text-orange-500 hover:font-bold transition-all cursor-pointer">
+            Desert
+          </li>
+          <li className="text-[#666] font-medium hover:text-orange-500 hover:font-bold transition-all cursor-pointer">
+            Tea
+          </li>
         </ul>
       </nav>
-      <section className="bg-slate-600 flex flex-col items-center">
+      <section className="flex flex-col">
         {/* 서브 카테고리 부분 */}
-        <nav>
-          <ul>
-            <li>콜드부르</li>
-          </ul>
+        <nav className="flex space-x-4 border-2 border-orange-500 rounded-lg mb-4 font-medium w-full flex-wrap">
+          <button className="p-2 rounded-md bg-orange-500 text-white shadow-md focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none transition-colors m-2 text-sm font-medium">
+            콜드브루
+          </button>
+          <button className="p-2 rounded-md bg-orange-500 text-white shadow-md focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none transition-colors m-2 text-sm font-medium">
+            라떼
+          </button>
+          <button className="p-2 rounded-md bg-orange-500 text-white shadow-md focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none transition-colors m-2 text-sm font-medium">
+            에스프레소
+          </button>
+          <button className="p-2 rounded-md bg-orange-500 text-white shadow-md focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none transition-colors m-2 text-sm font-medium">
+            디카페인
+          </button>
+          <button className="p-2 rounded-md bg-orange-500 text-white shadow-md focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none transition-colors m-2 text-sm font-medium">
+            콜드브루
+          </button>
+          <button className="p-2 rounded-md bg-orange-500 text-white shadow-md focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none transition-colors m-2 text-sm font-medium">
+            라떼
+          </button>
+          <button className="p-2 rounded-md bg-orange-500 text-white shadow-md focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none transition-colors m-2 text-sm font-medium">
+            에스프레소
+          </button>
+          <button className="p-2 rounded-md bg-orange-500 text-white shadow-md focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none transition-colors m-2 text-sm font-medium">
+            디카페인
+          </button>
         </nav>
         {/* 메뉴 */}
-        <div className="grid grid-cols-2 gap-2 h-full overflow-hidden md:grid-cols-4 lg:grid-cols-6 lg:gap-4">
-          {[...Array(40)].map((_, index) => (
-            <div key={index} className="bg-slate-500 w-28 h-28"></div>
-          ))}
+        <div className="bg-slate-100 mx-auto">
+          <ul className="grid grid-cols-4 gap-7">
+            {[...Array(40)].map((_, index) => (
+              <li key={index} className="bg-slate-300 w-48 h-48">
+                <img className="w-full h-auto" />
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
     </section>

@@ -15,7 +15,7 @@ export default function Header() {
   return (
     <header
       className={classnames(
-        "flex justify-between w-full h-14 border-b-gray-300 border-b-[1px] fixed top-0 bg-white bg-opacity-80"
+        "flex justify-between w-full h-14 border-b-gray-300 border-b-[1px] fixed top-0 bg-white bg-opacity-80 shadow-sm min-w-[320px]"
       )}
     >
       <nav className="flex items-center h-full justify-between space-x-4 w-[1200px] mx-auto px-4">
@@ -73,15 +73,17 @@ export default function Header() {
         mountOnEnter
         classNames="backdrop"
       >
-        <div className="backdrop" onClick={onCloseDrawer}></div>
+        <div className="backdrop min-w-[320px]" onClick={onCloseDrawer}></div>
       </CSSTransition>
       {/* drawer */}
       <div
-        className={`${styles.mobileDrawer} ${
+        className={classnames(
+          styles.mobileDrawer,
+          "min-w-[130px]",
           drawerOpen ? styles.activeMobileDrawer : ""
-        }`}
+        )}
       >
-        <div className="h-14 border-b-[1px] flex items-center px-4 justify-between">
+        <div className="h-14 border-b-[1px] flex items-center px-4 justify-between shadow-sm">
           <button className="border-[1px] rounded-md p-2 border-orange-500 font-medium text-orange-500">
             로그인
           </button>
