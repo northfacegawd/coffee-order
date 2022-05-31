@@ -6,8 +6,8 @@ const Home: NextPage = () => {
   return (
     <section className={homeStyles.grid}>
       {/* 메인 카테고리 부분 */}
-      <nav>
-        <ul className="border-l-[3px] border-orange-500 flex flex-col space-y-2 p-2">
+      <nav className="sm:h-[100vh]">
+        <ul className="border-l-[3px] border-orange-500 flex flex-col space-y-2 p-2 sm:sticky sm:top-[120px]">
           <li className="text-[#666] font-medium hover:text-orange-500 hover:font-bold transition-all cursor-pointer">
             Coffee
           </li>
