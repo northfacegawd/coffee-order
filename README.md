@@ -48,9 +48,9 @@ type(component): subject
 
 ## Todo
 
-- [ ] Additional browser support
+- [ ] commit lint 적용하기 (굳이 ..)
 
-- [ ] Add more integrations
+- [ ] swr 세팅
 
 
 ## Lessons Learned
