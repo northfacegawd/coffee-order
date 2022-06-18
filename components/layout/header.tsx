@@ -37,6 +37,7 @@ export default function Header() {
         <button
           className="lg:hidden hover:text-orange-500 transition-all ease-out"
           onClick={onOpenDrawer}
+          type="button"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +72,7 @@ export default function Header() {
               </Link>
             </li>
           </ul>
-          <button className="text-orange-500">
+          <button className="text-orange-500" type="button">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-10 w-10"
@@ -106,10 +107,14 @@ export default function Header() {
         )}
       >
         <div className="h-14 border-b-[1px] flex items-center px-4 justify-between shadow-sm">
-          <button className="border-[1px] rounded-md p-2 border-orange-500 font-medium text-orange-500">
+          <button
+            type="button"
+            className="border-[1px] rounded-md p-2 border-orange-500 font-medium text-orange-500"
+          >
             로그인
           </button>
           <button
+            type="button"
             onClick={onCloseDrawer}
             className="hover:text-orange-500 transition-all ease-out"
           >

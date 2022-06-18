@@ -1,10 +1,15 @@
+import React from 'react';
 import axios from 'axios';
 import type { GetStaticProps, NextPage } from 'next';
 import { StarBucksCoffee } from '@model/coffee';
 
 import homeStyles from './index.module.scss';
 
-const Home: NextPage<{ list: StarBucksCoffee[] }> = function Home({ list }) {
+interface HomeProps {
+  list: StarBucksCoffee[];
+}
+
+const Home: NextPage<HomeProps> = function Home({ list }: HomeProps) {
   return (
     <section className={homeStyles.grid}>
       {/* 메인 카테고리 부분 */}
@@ -82,9 +87,9 @@ const Home: NextPage<{ list: StarBucksCoffee[] }> = function Home({ list }) {
                   <dt>콜드브루 커피</dt>
                   <dd>
                     <ul>
-                      {list.map((coffee, i) => (
+                      {list.map((coffee) => (
                         <li
-                          key={i}
+                          key={coffee.product_NM}
                           className="float-left max-w-[260px] m-[10px] min-w-[100px]"
                         >
                           <dl className="max-w-[260px] min-w-[100px]">
@@ -93,6 +98,7 @@ const Home: NextPage<{ list: StarBucksCoffee[] }> = function Home({ list }) {
                                 <img
                                   src={`${coffee.img_UPLOAD_PATH}${coffee.file_PATH}`}
                                   className="w-full h-full hover:scale-[1.1] transition-all"
+                                  alt={coffee.product_NM}
                                 />
                               </a>
                             </dt>
