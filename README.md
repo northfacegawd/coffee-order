@@ -1,34 +1,63 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# ![Logo](https://www.dnsevercorp.com/assets/images/dnsever-logo.svg)
 
-First, run the development server:
+
+# Coffee Order
+
+사내에서 커피주문 하는 프로세스가 너무 마음에 안 들어서 .... \
+(슬랙으로 주문 후 바리스타님이 이모티콘으로 응답)
+
+
+
+
+## Tech Stack
+
+**Client:** React, NextJS, TailwindCSS, SCSS
+
+**Server:** Node, Express
+
+
+## Installation
+
 
 ```bash
-npm run dev
-# or
-yarn dev
+  git clone https://github.com/northfacegawd/coffee-order.git
+  cd coffee-order
+  npm install
+```
+    
+## Development
+
+```bash
+  npm run dev | yarn dev
+```
+## Commit Convention
+
+```bash
+type(component): subject
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Commit Type
+- feat: 새로운 기능 추가
+- fix: 버그 수정
+- docs: 문서 수정
+- style: 코드 포맷팅, 세미콜론 누락, 코드 변경이 없는 경우
+- refactor: 코드 리팩토링
+- test: 테스크 코드, 리팩토링 테스트 코드 추가
+- chore: 빌드 업무 수정, 패키지 매니저 수정, config 파일 수정
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Todo
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- [ ] Additional browser support
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- [ ] Add more integrations
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## Lessons Learned
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+개발하면서 작성 예정
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Authors
 
-## Deploy on Vercel
+- [@northfacegawd](https://www.github.com/northfacegawd)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
