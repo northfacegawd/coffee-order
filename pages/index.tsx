@@ -1,9 +1,10 @@
-import React from 'react';
-import type { NextPage } from 'next';
+import axios from 'axios';
+import type { GetStaticProps, NextPage } from 'next';
+import { StarBucksCoffee } from '@model/coffee';
 
 import homeStyles from './index.module.scss';
 
-const Home: NextPage = function Home() {
+const Home: NextPage<{ list: StarBucksCoffee[] }> = function Home({ list }) {
   return (
     <section className={homeStyles.grid}>
       {/* 메인 카테고리 부분 */}
@@ -73,17 +74,41 @@ const Home: NextPage = function Home() {
           </button>
         </nav>
         {/* 메뉴 */}
-        <div className="bg-slate-100 mx-auto">
-          <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7">
-            {[...Array(40)].map((_) => (
-              <li
-                key={_}
-                className="bg-slate-300 w-40 h-40 md:w-44 md:h-44 lg:w-48 lg:h-48"
-              >
-                <img className="w-full h-auto" alt="coffee" />
-              </li>
-            ))}
-          </ul>
+        <div>
+          <dl>
+            <dd>
+              <div>
+                <dl>
+                  <dt>콜드브루 커피</dt>
+                  <dd>
+                    <ul>
+                      {list.map((coffee, i) => (
+                        <li
+                          key={i}
+                          className="float-left max-w-[260px] m-[10px] min-w-[100px]"
+                        >
+                          <dl className="max-w-[260px] min-w-[100px]">
+                            <dt className="max-w-[258px] h-auto overflow-hidden min-w-[100px]">
+                              <a className="w-full h-full min-w-[100px]">
+                                <img
+                                  src={`${coffee.img_UPLOAD_PATH}${coffee.file_PATH}`}
+                                  className="w-full h-full hover:scale-[1.1] transition-all"
+                                />
+                              </a>
+                            </dt>
+                          </dl>
+
+                          <span className="w-full text-center">
+                            {coffee.product_NM}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </dd>
+                </dl>
+              </div>
+            </dd>
+          </dl>
         </div>
       </section>
     </section>
@@ -91,3 +116,12 @@ const Home: NextPage = function Home() {
 };
 
 export default Home;
+
+export const getStaticProps: GetStaticProps = async () => {
+  const {
+    data: { list },
+  } = await axios.get<{ list: StarBucksCoffee[] }>(
+    'https://www.starbucks.co.kr/upload/json/menu/W0000171.js',
+  );
+  return { props: { list } };
+};
