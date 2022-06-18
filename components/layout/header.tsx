@@ -1,10 +1,11 @@
-import { classnames } from "@lib/utils";
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
-import { CSSTransition } from "react-transition-group";
+import React, { useState } from 'react';
 
-import styles from "./header.module.scss";
+import { classnames } from '@lib/utils';
+import Image from 'next/image';
+import Link from 'next/link';
+import { CSSTransition } from 'react-transition-group';
+
+import styles from './header.module.scss';
 
 export default function Header() {
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
@@ -15,7 +16,7 @@ export default function Header() {
   return (
     <header
       className={classnames(
-        "flex justify-between w-full h-14 border-b-gray-300 border-b-[1px] fixed top-0 bg-white bg-opacity-80 shadow-sm min-w-[320px]"
+        'flex justify-between w-full h-14 border-b-gray-300 border-b-[1px] fixed top-0 bg-white bg-opacity-80 shadow-sm min-w-[320px]',
       )}
     >
       <nav className="flex items-center h-full justify-between space-x-4 w-[1200px] mx-auto px-4">
@@ -23,9 +24,7 @@ export default function Header() {
           <a className="flex items-center">
             <span className="relative w-32 h-14">
               <Image
-                src={
-                  "https://www.dnsevercorp.com/assets/images/dnsever-logo.svg"
-                }
+                src="https://www.dnsevercorp.com/assets/images/dnsever-logo.svg"
                 className="object-contain"
                 layout="fill"
                 alt="dnsever_logo"
@@ -96,14 +95,14 @@ export default function Header() {
         mountOnEnter
         classNames="backdrop"
       >
-        <div className="backdrop min-w-[320px]" onClick={onCloseDrawer}></div>
+        <div className="backdrop min-w-[320px]" onClick={onCloseDrawer} />
       </CSSTransition>
       {/* drawer */}
       <div
         className={classnames(
           styles.mobileDrawer,
-          "min-w-[130px]",
-          drawerOpen ? styles.activeMobileDrawer : ""
+          'min-w-[130px]',
+          drawerOpen ? styles.activeMobileDrawer : '',
         )}
       >
         <div className="h-14 border-b-[1px] flex items-center px-4 justify-between shadow-sm">
@@ -130,7 +129,7 @@ export default function Header() {
             </svg>
           </button>
         </div>
-        <nav></nav>
+        <nav />
       </div>
     </header>
   );
