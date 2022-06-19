@@ -35,7 +35,7 @@ export default function Header() {
         </Link>
         {/* MOBILE VERSION */}
         <button
-          className="lg:hidden hover:text-orange-500 transition-all ease-out"
+          className="md:hidden hover:text-orange-500 transition-all ease-out"
           onClick={onOpenDrawer}
           type="button"
         >
@@ -55,7 +55,7 @@ export default function Header() {
           </svg>
         </button>
         {/* DESKTOP VERSION */}
-        <div className="w-full hidden lg:flex justify-between items-center">
+        <div className="w-full hidden md:flex justify-between items-center">
           <ul className="flex space-x-4">
             <li>
               <Link href="/menu">
