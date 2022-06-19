@@ -13,8 +13,7 @@ export default function ClassificationNavigator() {
             디저트
           </li>
         </ul>
-        <ul />
-        <ul className="h-24 overflow-auto mt-4 py-1 sm:h-auto sm:flex sm:flex-wrap sm:space-x-4">
+        <ul className="h-24 overflow-auto mt-4 py-1 sm:h-auto sm:flex sm:flex-wrap sm:space-x-4 scroll-smooth">
           <li className="mb-3 text-sm sm:mb-0">
             <input type="checkbox" className="ml-1 align-middle " id="all" />
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
