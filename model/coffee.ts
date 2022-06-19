@@ -99,3 +99,25 @@ export interface StarBucksCoffee {
   total_CNT: number;
   rnum: number;
 }
+
+export const startBucksCoffeeTypeArray = [
+  'cold_brew',
+  'brood',
+  'espresso',
+  'frappuccino',
+  'blended',
+  'refresher',
+  'fizzio',
+  'tea',
+  'other',
+  'juice_bottle',
+] as const;
+
+export type StartBucksCoffeeType = typeof startBucksCoffeeTypeArray[number];
+
+export interface StarBucksMenu {
+  type: StartBucksCoffeeType;
+  name: string;
+  fileName: string;
+  list: StarBucksCoffee[];
+}
