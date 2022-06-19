@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { GetStaticProps, NextPage } from 'next';
+import type { GetServerSideProps, NextPage } from 'next';
 
 import { StarBucksMenu, startBucksCoffeeTypeArray } from '@model/coffee';
 import ClassificationNavigator from '@components/home/classification-navigator';
@@ -32,10 +32,10 @@ const Home: NextPage<HomeProps> = function Home({ menuList }: HomeProps) {
         </div>
       </section>
       <section className="w-full mt-6">
-        <dl>
+        <dl className="flex flex-col">
           {menuList?.map((menu) => (
             <React.Fragment key={menu.type}>
-              <dt className="mt-20 w-full bg-slate-200 p-3 rounded-md font-medium text-base">
+              <dt className="my-4 w-full bg-slate-200 p-3 rounded-md font-medium text-base">
                 {menu.name}
               </dt>
               <dd className="block mb-5">
@@ -71,7 +71,7 @@ const Home: NextPage<HomeProps> = function Home({ menuList }: HomeProps) {
 
 export default Home;
 
-export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
   const menuList = await Promise.all(
     startBucksCoffeeTypeArray.map((type) => getCoffeeList(type)),
   );
