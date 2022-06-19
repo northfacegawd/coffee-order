@@ -1,123 +1,109 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import type { GetStaticProps, NextPage } from 'next';
 import { StarBucksCoffee } from '@model/coffee';
-
-import homeStyles from './index.module.scss';
 
 interface HomeProps {
   list: StarBucksCoffee[];
 }
 
-const Home: NextPage<HomeProps> = function Home({ list }: HomeProps) {
-  return (
-    <section className={homeStyles.grid}>
-      {/* 메인 카테고리 부분 */}
-      <nav className="sm:h-[100vh]">
-        <ul className="border-l-[3px] border-orange-500 flex flex-col space-y-2 p-2 sm:sticky sm:top-[120px]">
-          <li className="text-[#666] font-medium hover:text-orange-500 hover:font-bold transition-all cursor-pointer">
-            Coffee
-          </li>
-          <li className="text-[#666] font-medium hover:text-orange-500 hover:font-bold transition-all cursor-pointer">
-            Dessert
-          </li>
-          <li className="text-[#666] font-medium hover:text-orange-500 hover:font-bold transition-all cursor-pointer">
-            Tea
-          </li>
-        </ul>
-      </nav>
-      <section className="flex flex-col">
-        {/* 서브 카테고리 부분 */}
-        <nav className="flex space-x-4 border-2 border-orange-500 rounded-lg mb-4 font-medium w-full flex-wrap">
-          <button
-            type="button"
-            className="p-2 rounded-md bg-orange-500 text-white shadow-md focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none transition-colors m-2 text-sm font-medium"
-          >
-            콜드브루
-          </button>
-          <button
-            type="button"
-            className="p-2 rounded-md bg-orange-500 text-white shadow-md focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none transition-colors m-2 text-sm font-medium"
-          >
-            라떼
-          </button>
-          <button
-            type="button"
-            className="p-2 rounded-md bg-orange-500 text-white shadow-md focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none transition-colors m-2 text-sm font-medium"
-          >
-            에스프레소
-          </button>
-          <button
-            type="button"
-            className="p-2 rounded-md bg-orange-500 text-white shadow-md focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none transition-colors m-2 text-sm font-medium"
-          >
-            디카페인
-          </button>
-          <button
-            type="button"
-            className="p-2 rounded-md bg-orange-500 text-white shadow-md focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none transition-colors m-2 text-sm font-medium"
-          >
-            콜드브루
-          </button>
-          <button
-            type="button"
-            className="p-2 rounded-md bg-orange-500 text-white shadow-md focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none transition-colors m-2 text-sm font-medium"
-          >
-            라떼
-          </button>
-          <button
-            type="button"
-            className="p-2 rounded-md bg-orange-500 text-white shadow-md focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none transition-colors m-2 text-sm font-medium"
-          >
-            에스프레소
-          </button>
-          <button
-            type="button"
-            className="p-2 rounded-md bg-orange-500 text-white shadow-md focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none transition-colors m-2 text-sm font-medium"
-          >
-            디카페인
-          </button>
-        </nav>
-        {/* 메뉴 */}
-        <div>
-          <dl>
-            <dd>
-              <div>
-                <dl>
-                  <dt>콜드브루 커피</dt>
-                  <dd>
-                    <ul>
-                      {list.map((coffee) => (
-                        <li
-                          key={coffee.product_NM}
-                          className="float-left max-w-[260px] m-[10px] min-w-[100px]"
-                        >
-                          <dl className="max-w-[260px] min-w-[100px]">
-                            <dt className="max-w-[258px] h-auto overflow-hidden min-w-[100px]">
-                              <a className="w-full h-full min-w-[100px]">
-                                <img
-                                  src={`${coffee.img_UPLOAD_PATH}${coffee.file_PATH}`}
-                                  className="w-full h-full hover:scale-[1.1] transition-all"
-                                  alt={coffee.product_NM}
-                                />
-                              </a>
-                            </dt>
-                          </dl>
+const Home: NextPage<HomeProps> = function Home() {
+  const [openCategory, setOpenCategory] = useState<boolean>(false);
 
-                          <span className="w-full text-center">
-                            {coffee.product_NM}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </dd>
-                </dl>
+  const onToggle = () => setOpenCategory((prev) => !prev);
+
+  return (
+    <>
+      <h1 className="mb-4 font-bold text-lg">Menu</h1>
+      <section>
+        <div className="w-full border-[1px] rounded-md p-5 relative">
+          <button
+            type="button"
+            className="absolute top-[15px] right-[20px] p-1 bg-slate-200 rounded-full"
+            onClick={onToggle}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d={openCategory ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7'}
+              />
+            </svg>
+          </button>
+          <h1 className="font-medium text-base">분류 보기</h1>
+          {openCategory && (
+            <>
+              <hr className="my-5" />
+              <div>
+                <ul className="flex flex-wrap space-x-1">
+                  <li className="p-2 flex-1 text-center bg-orange-400 rounded-sm cursor-pointer text-sm font-[500] max-w-[200px] hover:bg-orange-500 transition-all text-white">
+                    커피
+                  </li>
+                  <li className="p-2 flex-1 text-center bg-slate-200 rounded-sm cursor-pointer text-sm font-[500] max-w-[200px] hover:bg-orange-500 transition-all hover:text-white">
+                    디저트
+                  </li>
+                </ul>
+                <ul />
+                <ul className="h-24 overflow-auto mt-4 py-1 sm:h-auto sm:flex sm:flex-wrap sm:space-x-4">
+                  <li className="mb-3 text-sm sm:mb-0">
+                    <input
+                      type="checkbox"
+                      className="ml-1 align-middle "
+                      id="all"
+                    />
+                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                    <label className="align-middle ml-2" htmlFor="all">
+                      전체 상품보기
+                    </label>
+                  </li>
+                  <li className="mb-3 text-sm">
+                    <input
+                      type="checkbox"
+                      className="ml-1 align-middle "
+                      id="cold_brew"
+                    />
+                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                    <label className="align-middle ml-2" htmlFor="cold_brew">
+                      콜드 브루 커피
+                    </label>
+                  </li>
+                  <li className="mb-3 text-sm">
+                    <input
+                      type="checkbox"
+                      className="ml-1 align-middle "
+                      id="espresso"
+                    />
+                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                    <label className="align-middle ml-2" htmlFor="espresso">
+                      에스프레소
+                    </label>
+                  </li>
+                  <li className="mb-3 text-sm">
+                    <input
+                      type="checkbox"
+                      className="ml-1 align-middle "
+                      id="blended"
+                    />
+                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                    <label className="align-middle ml-2" htmlFor="blended">
+                      블렌디드
+                    </label>
+                  </li>
+                </ul>
               </div>
-            </dd>
-          </dl>
+            </>
+          )}
         </div>
       </section>
-    </section>
+      <section />
+    </>
   );
 };
 

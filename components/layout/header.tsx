@@ -16,7 +16,7 @@ export default function Header() {
   return (
     <header
       className={classnames(
-        'flex justify-between w-full h-14 border-b-gray-300 border-b-[1px] fixed top-0 bg-white bg-opacity-80 shadow-sm min-w-[320px]',
+        'flex justify-between w-full h-14 border-b-gray-300 border-b-[1px] fixed top-0 bg-white bg-opacity-80 shadow-sm min-w-[320px] z-50',
       )}
     >
       <nav className="flex items-center h-full justify-between space-x-4 w-[1200px] mx-auto px-4">
@@ -102,7 +102,7 @@ export default function Header() {
       <div
         className={classnames(
           styles.mobileDrawer,
-          'min-w-[130px]',
+          'min-w-[130px] z-10',
           drawerOpen ? styles.activeMobileDrawer : '',
         )}
       >
