@@ -18,7 +18,7 @@ const Home: NextPage<HomeProps> = function Home({ menuList }: HomeProps) {
   return (
     <>
       <h1 className="mb-4 font-bold text-lg">Menu</h1>
-      <section>
+      <section className="sticky top-14 z-10 bg-white shadow-md rounded-md">
         <div className="w-full border-[1px] rounded-md p-5 relative">
           <button
             type="button"
@@ -35,7 +35,7 @@ const Home: NextPage<HomeProps> = function Home({ menuList }: HomeProps) {
         <dl className="flex flex-col">
           {menuList?.map((menu) => (
             <React.Fragment key={menu.type}>
-              <dt className="my-4 w-full bg-slate-200 p-3 rounded-md font-medium text-base">
+              <dt className="my-4 w-full bg-slate-200 p-3 rounded-md font-medium text-base shadow-sm">
                 {menu.name}
               </dt>
               <dd className="block mb-5">
@@ -43,7 +43,7 @@ const Home: NextPage<HomeProps> = function Home({ menuList }: HomeProps) {
                   {menu.list.map((coffee) => (
                     <li
                       key={coffee.product_NM}
-                      className="list-item w-[49%] m-[0.5%] float-left sm:w-[31%] sm:m-[0.65%] md:w-[24%] md:m-[0.5%]"
+                      className="list-item w-[49%] m-[0.5%] float-left sm:w-[31%] sm:m-[0.65%] md:w-[24%] md:m-[0.5%] hover:underline"
                     >
                       <dl className="w-full">
                         <dt className="w-full h-auto overflow-hidden">
