@@ -16,7 +16,7 @@ export default function Header() {
   return (
     <header
       className={classnames(
-        'flex justify-between w-full h-14 border-b-gray-300 border-b-[1px] fixed top-0 bg-white bg-opacity-80 shadow-sm min-w-[320px]',
+        'flex justify-between w-full h-14 border-b-gray-300 border-b-[1px] fixed top-0 bg-white bg-opacity-80 shadow-sm min-w-[320px] z-50',
       )}
     >
       <nav className="flex items-center h-full justify-between space-x-4 w-[1200px] mx-auto px-4">
@@ -35,8 +35,9 @@ export default function Header() {
         </Link>
         {/* MOBILE VERSION */}
         <button
-          className="lg:hidden hover:text-orange-500 transition-all ease-out"
+          className="md:hidden hover:text-orange-500 transition-all ease-out"
           onClick={onOpenDrawer}
+          type="button"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +55,7 @@ export default function Header() {
           </svg>
         </button>
         {/* DESKTOP VERSION */}
-        <div className="w-full hidden lg:flex justify-between items-center">
+        <div className="w-full hidden md:flex justify-between items-center">
           <ul className="flex space-x-4">
             <li>
               <Link href="/menu">
@@ -71,7 +72,7 @@ export default function Header() {
               </Link>
             </li>
           </ul>
-          <button className="text-orange-500">
+          <button className="text-orange-500" type="button">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-10 w-10"
@@ -101,15 +102,19 @@ export default function Header() {
       <div
         className={classnames(
           styles.mobileDrawer,
-          'min-w-[130px]',
+          'min-w-[130px] z-10',
           drawerOpen ? styles.activeMobileDrawer : '',
         )}
       >
         <div className="h-14 border-b-[1px] flex items-center px-4 justify-between shadow-sm">
-          <button className="border-[1px] rounded-md p-2 border-orange-500 font-medium text-orange-500">
+          <button
+            type="button"
+            className="border-[1px] rounded-md p-2 border-orange-500 font-medium text-orange-500"
+          >
             로그인
           </button>
           <button
+            type="button"
             onClick={onCloseDrawer}
             className="hover:text-orange-500 transition-all ease-out"
           >

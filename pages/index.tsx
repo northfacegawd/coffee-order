@@ -1,93 +1,79 @@
-import React from 'react';
-import type { NextPage } from 'next';
+import React, { useState } from 'react';
+import type { GetServerSideProps, NextPage } from 'next';
 
-import homeStyles from './index.module.scss';
+import { StarBucksMenu, startBucksCoffeeTypeArray } from '@model/coffee';
+import ClassificationNavigator from '@components/home/classification-navigator';
+import Chevron from '@components/icons/chevron';
+import getCoffeeList from 'api/coffee';
 
-const Home: NextPage = function Home() {
+interface HomeProps {
+  menuList: StarBucksMenu[];
+}
+
+const Home: NextPage<HomeProps> = function Home({ menuList }: HomeProps) {
+  const [openCategory, setOpenCategory] = useState<boolean>(true);
+
+  const onToggle = () => setOpenCategory((prev) => !prev);
+
   return (
-    <section className={homeStyles.grid}>
-      {/* 메인 카테고리 부분 */}
-      <nav className="sm:h-[100vh]">
-        <ul className="border-l-[3px] border-orange-500 flex flex-col space-y-2 p-2 sm:sticky sm:top-[120px]">
-          <li className="text-[#666] font-medium hover:text-orange-500 hover:font-bold transition-all cursor-pointer">
-            Coffee
-          </li>
-          <li className="text-[#666] font-medium hover:text-orange-500 hover:font-bold transition-all cursor-pointer">
-            Dessert
-          </li>
-          <li className="text-[#666] font-medium hover:text-orange-500 hover:font-bold transition-all cursor-pointer">
-            Tea
-          </li>
-        </ul>
-      </nav>
-      <section className="flex flex-col">
-        {/* 서브 카테고리 부분 */}
-        <nav className="flex space-x-4 border-2 border-orange-500 rounded-lg mb-4 font-medium w-full flex-wrap">
+    <>
+      <h1 className="mb-4 font-bold text-lg">Menu</h1>
+      <section className="sticky top-14 z-10 bg-white shadow-md rounded-md">
+        <div className="w-full border-[1px] rounded-md p-5 relative">
           <button
             type="button"
-            className="p-2 rounded-md bg-orange-500 text-white shadow-md focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none transition-colors m-2 text-sm font-medium"
+            className="absolute top-[15px] right-[20px] p-1 bg-slate-200 rounded-full"
+            onClick={onToggle}
           >
-            콜드브루
+            <Chevron arrowDirection={openCategory ? 'up' : 'down'} />
           </button>
-          <button
-            type="button"
-            className="p-2 rounded-md bg-orange-500 text-white shadow-md focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none transition-colors m-2 text-sm font-medium"
-          >
-            라떼
-          </button>
-          <button
-            type="button"
-            className="p-2 rounded-md bg-orange-500 text-white shadow-md focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none transition-colors m-2 text-sm font-medium"
-          >
-            에스프레소
-          </button>
-          <button
-            type="button"
-            className="p-2 rounded-md bg-orange-500 text-white shadow-md focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none transition-colors m-2 text-sm font-medium"
-          >
-            디카페인
-          </button>
-          <button
-            type="button"
-            className="p-2 rounded-md bg-orange-500 text-white shadow-md focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none transition-colors m-2 text-sm font-medium"
-          >
-            콜드브루
-          </button>
-          <button
-            type="button"
-            className="p-2 rounded-md bg-orange-500 text-white shadow-md focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none transition-colors m-2 text-sm font-medium"
-          >
-            라떼
-          </button>
-          <button
-            type="button"
-            className="p-2 rounded-md bg-orange-500 text-white shadow-md focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none transition-colors m-2 text-sm font-medium"
-          >
-            에스프레소
-          </button>
-          <button
-            type="button"
-            className="p-2 rounded-md bg-orange-500 text-white shadow-md focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none transition-colors m-2 text-sm font-medium"
-          >
-            디카페인
-          </button>
-        </nav>
-        {/* 메뉴 */}
-        <div className="bg-slate-100 mx-auto">
-          <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7">
-            {[...Array(40)].map((_) => (
-              <li
-                key={_}
-                className="bg-slate-300 w-40 h-40 md:w-44 md:h-44 lg:w-48 lg:h-48"
-              >
-                <img className="w-full h-auto" alt="coffee" />
-              </li>
-            ))}
-          </ul>
+          <h1 className="font-medium text-base">분류 보기</h1>
+          {openCategory && <ClassificationNavigator />}
         </div>
       </section>
-    </section>
+      <section className="w-full mt-6">
+        <dl className="flex flex-col">
+          {menuList?.map((menu) => (
+            <React.Fragment key={menu.type}>
+              <dt className="my-4 w-full bg-slate-200 p-3 rounded-md font-medium text-base shadow-sm">
+                {menu.name}
+              </dt>
+              <dd className="block mb-5">
+                <ul className="w-full">
+                  {menu.list.map((coffee) => (
+                    <li
+                      key={coffee.product_NM}
+                      className="list-item w-[49%] m-[0.5%] float-left sm:w-[31%] sm:m-[0.65%] md:w-[24%] md:m-[0.5%] hover:underline"
+                    >
+                      <dl className="w-full">
+                        <dt className="w-full h-auto overflow-hidden">
+                          <img
+                            src={`${coffee.img_UPLOAD_PATH}${coffee.file_PATH}`}
+                            alt={coffee.product_NM}
+                            className="hover:scale-[1.1] transition-all cursor-pointer"
+                          />
+                        </dt>
+                        <dd className="text-sm font-medium h-12 flex items-center justify-center">
+                          {coffee.product_NM}
+                        </dd>
+                      </dl>
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </React.Fragment>
+          ))}
+        </dl>
+      </section>
+    </>
   );
 };
 
 export default Home;
+
+export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
+  const menuList = await Promise.all(
+    startBucksCoffeeTypeArray.map((type) => getCoffeeList(type)),
+  );
+  return { props: { menuList } };
+};
