@@ -14,14 +14,11 @@
 
 **Client:** React, NextJS, TailwindCSS, SCSS
 
-**Server:** Node, Express
-
-
 ## Installation
 
 
 ```bash
-  git clone https://github.com/northfacegawd/coffee-order.git
+  git clone git@github.com:northfacegawd/coffee-order.git
   cd coffee-order
   npm install
 ```
