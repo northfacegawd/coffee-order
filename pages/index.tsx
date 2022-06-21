@@ -5,6 +5,7 @@ import { StarBucksMenu, startBucksCoffeeTypeArray } from '@model/coffee';
 import ClassificationNavigator from '@components/home/classification-navigator';
 import Chevron from '@components/icons/chevron';
 import getCoffeeList from 'api/coffee';
+import classnames from '@lib/utils';
 
 interface HomeProps {
   menuList: StarBucksMenu[];
@@ -12,8 +13,10 @@ interface HomeProps {
 
 const Home: NextPage<HomeProps> = function Home({ menuList }: HomeProps) {
   const [openCategory, setOpenCategory] = useState<boolean>(true);
+  const [openSideNavigator, setOpenSideNavigator] = useState<boolean>(false);
 
   const onToggle = () => setOpenCategory((prev) => !prev);
+  const onToggleSide = () => setOpenSideNavigator((prev) => !prev);
 
   return (
     <>
@@ -64,6 +67,16 @@ const Home: NextPage<HomeProps> = function Home({ menuList }: HomeProps) {
             </React.Fragment>
           ))}
         </dl>
+        <button
+          onClick={onToggleSide}
+          className={classnames(
+            'md:hidden fixed bottom-6 right-6 rounded-full bg-orange-500 text-white p-4 md:p-5 transition-all duration-300',
+            openSideNavigator ? 'rotate-180' : '',
+          )}
+          type="button"
+        >
+          <Chevron arrowDirection="up" />
+        </button>
       </section>
     </>
   );
