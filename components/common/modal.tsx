@@ -8,6 +8,7 @@ interface ModalProps {
   contentStyle?: CSSProperties;
   enterDuration?: number;
   exitDuration?: number;
+  disableClose?: boolean;
 }
 
 const Modal: React.FC<PropsWithChildren<ModalProps>> = function Modal({
@@ -18,6 +19,7 @@ const Modal: React.FC<PropsWithChildren<ModalProps>> = function Modal({
   contentStyle,
   enterDuration,
   exitDuration,
+  disableClose,
 }) {
   return (
     <div className="fixed z-[1000] pointer-events-none top-0 left-0 h-full w-full">
@@ -30,7 +32,7 @@ const Modal: React.FC<PropsWithChildren<ModalProps>> = function Modal({
         <div
           style={backDropStyle}
           className="absolute top-0 bottom-0 left-0 right-0 z-[1000] pointer-events-auto transition-all ease-out duration-150 bg-modal opacity-0"
-          onClick={onClose}
+          onClick={disableClose ? undefined : onClose}
           id="modalBackdrop"
         />
       </CSSTransition>
@@ -79,4 +81,5 @@ Modal.defaultProps = {
   backDropStyle: {},
   enterDuration: 150,
   exitDuration: 150,
+  disableClose: false,
 };
