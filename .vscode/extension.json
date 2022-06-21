@@ -1,0 +1,10 @@
+{
+	"recommendations": [
+		"bradlc.vscode-tailwindcss",
+        "blanu.vscode-styled-jsx",
+        "esbenp.prettier-vscode",
+        "dsznajder.es7-react-js-snippets",
+        "formulahendry.auto-rename-tag",
+        "formulahendry.auto-close-tag"
+	]
+}
