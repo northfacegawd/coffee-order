@@ -6,6 +6,8 @@ interface ModalProps {
   onClose: () => void;
   backDropStyle?: CSSProperties;
   contentStyle?: CSSProperties;
+  enterDuration?: number;
+  exitDuration?: number;
 }
 
 const Modal: React.FC<PropsWithChildren<ModalProps>> = function Modal({
@@ -14,15 +16,14 @@ const Modal: React.FC<PropsWithChildren<ModalProps>> = function Modal({
   onClose,
   backDropStyle,
   contentStyle,
+  enterDuration,
+  exitDuration,
 }) {
-  const enterTime = 150;
-  const exitTime = 150;
-
   return (
     <div className="fixed z-[1000] pointer-events-none top-0 left-0 h-full w-full">
       <CSSTransition
         in={open}
-        timeout={{ enter: enterTime, exit: exitTime }}
+        timeout={{ enter: enterDuration, exit: exitDuration }}
         classNames="modal-backdrop"
         unmountOnExit
       >
@@ -30,24 +31,30 @@ const Modal: React.FC<PropsWithChildren<ModalProps>> = function Modal({
           style={backDropStyle}
           className="absolute top-0 bottom-0 left-0 right-0 z-[1000] pointer-events-auto transition-all ease-out duration-150 bg-modal opacity-0"
           onClick={onClose}
+          id="modalBackdrop"
         />
       </CSSTransition>
       <div className="flex absolute z-[1000] justify-center items-center w-full h-full">
         <CSSTransition
           in={open}
-          timeout={{ enter: enterTime, exit: exitTime }}
+          timeout={{ enter: enterDuration, exit: exitDuration }}
           classNames="modal"
           unmountOnExit
         >
           <div
             style={contentStyle}
             className="max-h-full pointer-events-auto z-[1000] bg-white p-5 transition-all duration-150 ease-out scale-[0.8] opacity-0 shadow-modal"
+            id="modalContent"
           >
             {children}
           </div>
         </CSSTransition>
       </div>
       <style jsx>{`
+        #modalBackdrop,
+        #modalContent {
+          transition-duration: ${open ? enterDuration : exitDuration}ms;
+        }
         .modal-enter-active,
         .modal-enter-done {
           transform: scale(1);
@@ -58,7 +65,7 @@ const Modal: React.FC<PropsWithChildren<ModalProps>> = function Modal({
         }
         .modal-backdrop-enter-active,
         .modal-backdrop-enter-done {
-          opacity: 1 !important;
+          opacity: 1;
         }
       `}</style>
     </div>
@@ -70,4 +77,6 @@ export default Modal;
 Modal.defaultProps = {
   contentStyle: {},
   backDropStyle: {},
+  enterDuration: 150,
+  exitDuration: 150,
 };
