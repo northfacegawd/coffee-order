@@ -1,9 +1,7 @@
 import React, { CSSProperties, PropsWithChildren } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
-interface ModalProps {
-  open: boolean;
-  onClose: () => void;
+export interface ModalConfig {
   backDropStyle?: CSSProperties;
   contentStyle?: CSSProperties;
   enterDuration?: number;
@@ -11,16 +9,24 @@ interface ModalProps {
   disableClose?: boolean;
 }
 
+interface ModalProps {
+  open: boolean;
+  onClose: () => void;
+  config?: ModalConfig;
+}
+
 const Modal: React.FC<PropsWithChildren<ModalProps>> = function Modal({
   children,
   open,
   onClose,
-  backDropStyle,
-  contentStyle,
-  enterDuration,
-  exitDuration,
-  disableClose,
+  config,
 }) {
+  const enterDuration = config?.enterDuration;
+  const exitDuration = config?.exitDuration;
+  const backDropStyle = config?.backDropStyle;
+  const contentStyle = config?.contentStyle;
+  const disableClose = config?.disableClose;
+
   return (
     <div className="fixed z-[1000] pointer-events-none top-0 left-0 h-full w-full">
       <CSSTransition
@@ -77,9 +83,11 @@ const Modal: React.FC<PropsWithChildren<ModalProps>> = function Modal({
 export default Modal;
 
 Modal.defaultProps = {
-  contentStyle: {},
-  backDropStyle: {},
-  enterDuration: 150,
-  exitDuration: 150,
-  disableClose: false,
+  config: {
+    contentStyle: {},
+    backDropStyle: {},
+    enterDuration: 150,
+    exitDuration: 150,
+    disableClose: false,
+  },
 };
