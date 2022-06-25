@@ -20,9 +20,10 @@ export interface Coffee {
   name_ko: string;
   slug: string;
   sort: number;
-  start: number;
+  star: number;
   status: typeof COFFEE_STATUS_ARRAY[number];
   thumbnail: string;
+  comments: string;
   options: Option[];
 }
 

@@ -66,7 +66,7 @@ const Home: NextPage<HomeProps> = function Home() {
                             className="hover:scale-[1.1] transition-all cursor-pointer mx-auto"
                           />
                         </dt>
-                        <dd className="text-sm font-medium min-h-12 flex items-center justify-center flex-col">
+                        <dd className="text-sm font-medium h-12 flex items-center justify-center flex-col">
                           <span>{coffee.name_ko}</span>
                           <span className="capitalize">({coffee.name_en})</span>
                         </dd>

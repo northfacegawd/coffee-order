@@ -44,4 +44,4 @@ Loading.defaultProps = {
   speed: '150ms',
 };
 
-export default Loading;
+export default React.memo(Loading);
