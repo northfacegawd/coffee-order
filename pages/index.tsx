@@ -21,7 +21,7 @@ const Home: NextPage<HomeProps> = function Home() {
   // query param으로 id를 전달하여 coffee order modal을 오픈
   const onOpenCoffeeOrder = (id: number) => {
     router.query.id = id.toString();
-    router.replace(router);
+    router.replace(router, undefined, { scroll: false });
   };
 
   return (
@@ -47,10 +47,11 @@ const Home: NextPage<HomeProps> = function Home() {
           {data?.data?.map((menu) => (
             <React.Fragment key={menu.id}>
               <dt className="my-4 w-full bg-slate-200 p-3 rounded-md font-medium text-base shadow-sm">
-                {menu.name_en} ({menu.name_ko})
+                {menu.name_ko}&nbsp;
+                <span className="capitalize">({menu.name_en})</span>
               </dt>
               <dd className="block mb-5">
-                <ul className="w-full">
+                <ul className="w-full flex flex-wrap items-end">
                   {menu.products.map((coffee) => (
                     <li
                       key={coffee.id}
@@ -62,11 +63,12 @@ const Home: NextPage<HomeProps> = function Home() {
                           <img
                             src={`${coffee.thumbnail}`}
                             alt={coffee.name_en}
-                            className="hover:scale-[1.1] transition-all cursor-pointer"
+                            className="hover:scale-[1.1] transition-all cursor-pointer mx-auto"
                           />
                         </dt>
-                        <dd className="text-sm font-medium h-12 flex items-center justify-center">
-                          {coffee.name_en}
+                        <dd className="text-sm font-medium min-h-12 flex items-center justify-center flex-col">
+                          <span>{coffee.name_ko}</span>
+                          <span className="capitalize">({coffee.name_en})</span>
                         </dd>
                       </dl>
                     </li>

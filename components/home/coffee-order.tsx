@@ -14,7 +14,7 @@ function CoffeeOrder() {
 
   const onCloseCoffeeOrder = () => {
     delete router.query.id;
-    router.replace(router);
+    router.replace(router, undefined, { scroll: false });
   };
 
   return (
@@ -23,7 +23,15 @@ function CoffeeOrder() {
       onClose={onCloseCoffeeOrder}
       config={{ exitDuration: 0 }}
     >
-      {data?.data ? null : <Loading size={100} />}
+      {data?.data ? (
+        <div>
+          <h2 className="font-bold">{data.data.name_ko}</h2>
+          <h4 className="text-gray-500">{data.data.name_en}</h4>
+          <div className="border-t-2 text-black my-4" />
+        </div>
+      ) : (
+        <Loading size={100} speed="1s" />
+      )}
     </Modal>
   );
 }

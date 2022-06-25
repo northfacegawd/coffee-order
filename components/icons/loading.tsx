@@ -4,7 +4,7 @@ import styles from './loading.module.scss';
 
 interface LoadingProps {
   size: number;
-  speed?: number;
+  speed?: `${number}s` | `${number}ms`;
 }
 const Loading: React.FC<LoadingProps> = function Loading({
   size,
@@ -21,7 +21,7 @@ const Loading: React.FC<LoadingProps> = function Loading({
       style={{
         width: `${size}px`,
         height: `${size}px`,
-        animationDuration: `${speed}s`,
+        animationDuration: `${speed}`,
       }}
       className={styles.wrapper}
     >
@@ -41,7 +41,7 @@ const Loading: React.FC<LoadingProps> = function Loading({
 };
 
 Loading.defaultProps = {
-  speed: 1.5,
+  speed: '150ms',
 };
 
 export default Loading;
