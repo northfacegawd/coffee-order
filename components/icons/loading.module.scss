@@ -1,0 +1,17 @@
+.wrapper {
+  display: block;
+  background-repeat: inherit;
+  background-color: transparent;
+  transform-origin: 50% 50%;
+  animation: rotate_image linear infinite;
+}
+
+.circle {
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}
+
+@keyframes rotate_image {
+  100% {
+    transform: rotate(360deg);
+  }
+}

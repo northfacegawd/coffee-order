@@ -14,6 +14,7 @@ export interface Option {
 }
 
 export interface Coffee {
+  id: number;
   is_delete: number;
   name_en: string;
   name_ko: string;
