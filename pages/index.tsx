@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import type { NextPage } from 'next';
+import { useRouter } from 'next/router';
 
 import { CoffeeList } from '@model/coffee';
 import ClassificationNavigator from '@components/home/classification-navigator';
 import Chevron from '@components/icons/chevron';
 import useSWR from 'swr';
 import CoffeeOrder from '@components/home/coffee-order';
-import { useRouter } from 'next/router';
 
 interface HomeProps {}
 
